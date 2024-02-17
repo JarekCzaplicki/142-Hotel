@@ -1,4 +1,7 @@
 package com.hotel.repository;
 
-public class RoomRepository {
+import com.hotel.entity.Room;
+import org.springframework.data.repository.CrudRepository;
+
+public interface RoomRepository extends CrudRepository<Room, Long> {
 }
