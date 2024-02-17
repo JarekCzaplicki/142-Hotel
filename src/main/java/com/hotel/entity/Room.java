@@ -12,7 +12,7 @@ public class Room {
     private long id;
     @Column(name = "room_type")
     private String roomType;
-    @Column(name = "room_Number")
+    @Column(name = "room_number")
     private String roomNumber;
     @Column(name = "bed_info")
     private String bedInfo;
