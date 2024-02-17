@@ -24,7 +24,7 @@ public class ReservationService {
     }
 
     // pobierz rezerwacje dla wskazanej daty
-    List<RoomReservation> getRoomsReservationsForDate(Date date) {
+    public List<RoomReservation> getRoomsReservationsForDate(Date date) {
         List<RoomReservation> roomReservations = new ArrayList<>();
 
         Iterable<Room> rooms = roomRepository.findAll();
@@ -63,6 +63,31 @@ public class ReservationService {
     }
 
     // pobierz gości hotelowych
+    public List<Guest> getHotelGuests() {
+        return guestRepository.findAll();
+    }
+
+    // pobieranie listy pokoi
+    public List<Room> getRooms() {
+        List<Room> rooms = new ArrayList<>();
+        for (Room room : roomRepository.findAll()) {
+            rooms.add(room);
+        }
+        return rooms;
+    }
+
     // dodawaj gości hotelowych
+    public Guest addGuest(Guest guest) {
+        if (guest == null)
+            throw new RuntimeException("Guest cannot be null");
+        return guestRepository.save(guest);
+    }
+
     // usuwanie gości hotelowych
+    public void deleteGuest(long guestId) {
+        if (getHotelGuests().stream().noneMatch(guest -> guest.getId() == guestId))
+            throw new RuntimeException("Guest not found");
+
+        guestRepository.deleteById(guestId);
+    }
 }
