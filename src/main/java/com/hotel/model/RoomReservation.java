@@ -35,10 +35,6 @@ public class RoomReservation { // Wykorzystamy do prezentacji danych na konsoli
         this.roomNumber = roomNumber;
     }
 
-    public long getId() {
-        return id;
-    }
-
     public void setId(long id) {
         this.id = id;
     }

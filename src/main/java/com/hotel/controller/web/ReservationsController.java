@@ -1,17 +1,14 @@
 package com.hotel.controller.web;
 
-import com.hotel.model.RoomReservation;
 import com.hotel.service.ReservationService;
 import com.hotel.util.DateUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
-import java.util.List;
 
 @Controller
 @RequestMapping("/webreservations")
@@ -23,10 +20,18 @@ public class ReservationsController {
         this.dateUtil = dateUtil;
         this.reservationService = reservationService;
     }
-    @GetMapping
-    public String getReservations(@RequestParam(required = false, value = "date") String stringDate, Model model) {
+
+    @GetMapping("/v1")
+    public String getReservationsV1(@RequestParam(required = false, value = "date") String stringDate, Model model) {
         Date date = dateUtil.createDateFromString(stringDate);
         model.addAttribute("roomReservations", reservationService.getRoomsReservationsForDate(date));
         return "room-res";
+    }
+
+    @GetMapping("v2")
+    public String getReservationsV2(@RequestParam(required = false, value = "date") String stringDate, Model model) {
+        Date date = dateUtil.createDateFromString(stringDate);
+        model.addAttribute("roomReservations", reservationService.getReservationByReservationDate(date));
+        return "room-res-date";
     }
 }

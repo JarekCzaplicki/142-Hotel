@@ -101,4 +101,12 @@ public class ReservationService {
         guestRepository.deleteById(guestId);
         return guestRepository.findById(guestId).isEmpty();
     }
+
+    public List<Reservation> getReservationByReservationDate(Date date){
+        List<Reservation> newList = new ArrayList<>();
+        Iterable<Reservation> reservations = reservationRepository.findReservationByReservationDate(new java.sql.Date(date.getTime()));
+        for (Reservation res : reservations)
+            newList.add(res);
+        return newList;
+    }
 }
