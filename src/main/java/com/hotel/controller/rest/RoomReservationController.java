@@ -2,9 +2,8 @@ package com.hotel.controller.rest;
 
 import com.hotel.entity.Guest;
 import com.hotel.service.ReservationService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,4 +20,14 @@ public class RoomReservationController {
     public List<Guest> getGuests() {
         return reservationService.getHotelGuests();
     }
+    @PostMapping("/guests")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Guest addGuest(@RequestBody Guest guest){
+        return reservationService.addGuest(guest);
+    }
+    @DeleteMapping("/guests/{guestId}")
+    public boolean deleteGuest(long guestId){
+        return reservationService.deleteGuest(guestId);
+    }
+
 }
