@@ -46,10 +46,10 @@ public class RoomReservationController {
     @RequestMapping(path = "/reservations", method = RequestMethod.GET)
     public List<RoomReservation> getReservations(@RequestParam(required = false, value = "date") String stringDate) {
         Date date = dateUtil.createDateFromString(stringDate);
-        System.out.println("_______________________________");
-        System.out.println(stringDate);
-        System.out.println(date);
-        System.out.println("_______________________________");
+//        System.out.println("_______________________________");
+//        System.out.println(stringDate);
+//        System.out.println(date);
+//        System.out.println("_______________________________");
         return reservationService.getRoomsReservationsForDate(date);
     }
 
